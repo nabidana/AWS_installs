@@ -1,0 +1,33 @@
+AWS에 mariaDB 설치
+
+1. /etc/yum.repos.d/MariaDB.repo 생성
+2. 해당 파일에 다음 내용 입력
+[mariadb]
+name = MariaDB
+# rpm.mariadb.org is a dynamic mirror if your preferred mirror goes offline. See https://mariadb.org/mirrorbits/ for details.
+# baseurl = https://rpm.mariadb.org/10.6/rhel/$releasever/$basearch
+baseurl = https://tw1.mirror.blendbyte.net/mariadb/yum/10.6/rhel/$releasever/$basearch
+# gpgkey = https://rpm.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgkey = https://tw1.mirror.blendbyte.net/mariadb/yum/RPM-GPG-KEY-MariaDB
+gpgcheck = 1
+
+3. yum update 실행
+
+4. yum install MariaDB-server MariaDB-client
+
+5. mysql -u root -p 로 디비접속
+
+6. create user 'dbroot'@'%' identified by 'asd123'; 사용자 생성
+
+7. grant all privileges on *.* to dbroot@'%'; 모든 권한 부여
+
+8. flush privileges; 새로고침
+
+9.  aws EC2 인스턴스 데시보드에서 보안그룹 선택
+
+10. [인바운드 규칙 편집] 버튼 클릭
+
+11. [규칙추가] 후 {유형}에서 [사용자 지정 TCP] 선택, {포트범위}
+에서 [3306] 입력, {소스}에서 [Anywhere] 선택
+
+12. [규칙저장] 버튼 클릭
