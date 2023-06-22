@@ -23,6 +23,8 @@ gpgcheck = 1
 
 8. flush privileges; 새로고침
 
+--add : /etc/my.cnf.d/server/cnf 찾기 -> bindaddress:0.0.0.0 허용
+
 9.  aws EC2 인스턴스 데시보드에서 보안그룹 선택
 
 10. [인바운드 규칙 편집] 버튼 클릭
